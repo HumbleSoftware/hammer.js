@@ -318,8 +318,19 @@ function Hammer(element, options, undefined)
         transform : function(event)
         {
             if(options.transform) {
-                var scale = event.scale || 1;
+                var scale;
                 var rotation = event.rotation || 0;
+
+                if (event.hasOwnProperty('scale')) {
+                    scale = event.scale;
+                } else {
+                    // fill for scale (Android)
+                    if (_pos.start.length > 1) {
+                      scale = getDistance(_pos.move[0], _pos.move[1]) / getDistance(_pos.start[0], _pos.start[1]);
+                    } else {
+                      scale = 1;
+                    }
+                }
 
                 if(countFingers(event) != 2) {
                     return false;
