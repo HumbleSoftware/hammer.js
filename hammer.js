@@ -177,6 +177,19 @@ function Hammer(element, options, undefined)
     }
 
     /**
+     * calculate the distance between two points
+     * @param object pos1 { x: int, y: int }
+     * @param object pos2 { x: int, y: int }
+     */
+    function getDistance( pos1, pos2 )
+    {
+      var dx = pos2.x - pos1.x;
+      var dy = pos2.y - pos1.y;
+
+      return Math.sqrt(dx * dx + dy * dy);
+    }
+
+    /**
      * trigger an event/callback by name with params
      * @param string name
      * @param array  params
